@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Exercicio Prático 2</title>
+  </head>
+  <body>
+    <form action="{{ url_for('edit_note', id=note.id) }}" method="POST">
+      Title: <input type="text" name="title" value="{{ note.title }}">
+      Description: <input type="text" name="description" value="{{ note.description }}">
+      <button type="submit">Save</button>
+    </form>
+  </body>
+</html>
