@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<a href="{{ url_for('make_form', method='GET')}}">GET</a>
+<a href="{{ url_for('make_form', method='POST')}}">POST</a>
+{% endblock %}

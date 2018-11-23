@@ -23,7 +23,7 @@ class User(object):
 
 @__app__.route('/')
 def main():
-    objectives = Objectives(['Ganhar grana', 'muita grana'])
+    objectives = Objectives(['Objective 1', 'Objective 2'])
     user = User('Sergio', 23, objectives)
     return render_template('primeiro_projeto.html', user=user), 200
 
