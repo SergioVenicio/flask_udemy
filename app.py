@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, session
 
 __app__ = Flask(__name__)
 __app__.config.from_object('config.DevelopmentConfig')
@@ -27,6 +27,36 @@ def proccess_form():
         age = request.form.get('age', '').encode('utf-8')
 
     return '<h1>{}<h1><h2>{}</h2>'.format(name, age)
+
+
+@__app__.route('/create_session')
+def create_session():
+    return u"""
+        <h1>Inicio da sessão</h1>
+        <form action="/validacao" method="POST">
+            Usuario: <input type="text" name="user" /> <br>
+            <button type="submit"> Salvar </button>
+        </form>
+    """, 200
+
+
+@__app__.route('/validacao', methods=['POST'])
+def validacao():
+    if request.method != 'POST':
+        return redirect('create_session')
+
+    user = request.form.get('user')
+
+    session['user'] = user
+    return redirect('restrito')
+
+
+@__app__.route('/restrito')
+def restrito():
+    if session['user'] is not None:
+        return u"""Estou logado!"""
+
+    return redirect('')
 
 
 __app__.run()
