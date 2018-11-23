@@ -21,7 +21,7 @@ class Objetos(object):
 
 
 @__app__.route('/')
-def ola_mundo():
+def main():
     objetos = Objetos()
 
     frutas = ['Banana', 'Maca', 'Melao']

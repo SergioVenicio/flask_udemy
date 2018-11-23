@@ -22,7 +22,7 @@ class User(object):
 
 
 @__app__.route('/')
-def ola_mundo():
+def main():
     objectives = Objectives(['Ganhar grana', 'muita grana'])
     user = User('Sergio', 23, objectives)
     return render_template('primeiro_projeto.html', user=user), 200

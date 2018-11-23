@@ -8,7 +8,7 @@ __app__.config.from_object('config.DevelopmentConfig')
 
 
 @__app__.route('/')
-def ola_mundo():
+def main():
     user = {'username': 'Sergio'}
     return render_template('index.html', user=user), 200
 
