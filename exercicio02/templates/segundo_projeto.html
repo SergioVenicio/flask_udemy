@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Exercicio 02</title>
+  </head>
+  <body>
+    <h1>Frutas</h1>
+    {% if objetos.frutas %}
+      <ul>
+        {% for fruta in objetos.frutas %}
+          <li>{{ fruta }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Não encontrado!</p>
+    {% endif %}
+    <br>
+    <h1>Legumes</h1>
+    {% if objetos.legumes %}
+      <ul>
+        {% for legume in objetos.legumes %}
+          <li>{{ legume }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Não encontrado!</p>
+    {% endif %}
+    <br>
+    <h1>Carnes</h1>
+    {% if objetos.carnes %}
+      <ul>
+        {% for carne in objetos.carnes %}
+          <li>{{ carne }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Não encontrado!</p>
+    {% endif %}
+  </body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Exercicio 01</title>
+  </head>
+  <body>
+    <h1>{{ user.name }}</h1>
+    <h2>{{ user.age }}</h2>
+    {% for objective in user.objectives %}
+      <h3>{{ objective }}</h3>
+    {% endfor %}
+  </body>
+</html>
