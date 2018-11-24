@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+
 from flask import Flask, render_template, request, redirect, session
 
 __app__ = Flask(__name__)
@@ -31,13 +32,19 @@ def proccess_form():
 
 @__app__.route('/create_session')
 def create_session():
+    options = """
+        <option selected>Escolha</option>
+        <option value="funcionario">Funcionario</option>
+        <option value="gerente">Gerente</option>
+    """
     return u"""
         <h1>Inicio da sessão</h1>
         <form action="/validacao" method="POST">
             Usuario: <input type="text" name="user" /> <br>
+            Tipo: <select name="tipo">{}</select>
             <button type="submit"> Salvar </button>
         </form>
-    """, 200
+    """.format(options), 200
 
 
 @__app__.route('/validacao', methods=['POST'])
@@ -46,15 +53,44 @@ def validacao():
         return redirect('create_session')
 
     user = request.form.get('user')
+    type_ = request.form.get('tipo')
+
+    if not user or not type_:
+        return redirect('')
 
     session['user'] = user
+    session['tipo'] = type_
+
     return redirect('restrito')
 
 
 @__app__.route('/restrito')
 def restrito():
-    if session['user'] is not None:
-        return u"""Estou logado!"""
+    logout = '<a href="logout">Logout</a>'
+    type_ = session.get('tipo')
+    user = session.get('user')
+
+    if type_ == 'funcionario':
+        welcome_message = u"""
+            Olá, {} <br> Você é o mais novo funcionário, seja bem vindo.
+            {}
+        """.format(user, logout)
+    elif type_ == 'gerente':
+        welcome_message = u"""
+            Olá, {} <br>
+            sua função é gerenciar todos os funcionários da empresa.
+            {}
+        """.format(user, logout)
+    else:
+        return redirect('')
+
+    return welcome_message
+
+
+@__app__.route('/logout')
+def logout():
+    if 'user' in session:
+        session.pop('user')
 
     return redirect('')
 
