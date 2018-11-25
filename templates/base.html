@@ -3,11 +3,14 @@
   <head>
     <meta charset="utf-8">
     {% block css %}
-      <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
     {% endblock %}
     <title>{% block title %}App{% endblock %}</title>
   </head>
   <body>
     {% block body %}{% endblock %}
   </body>
+  {% block js %}
+    <script type="text/jscript" src="{{ url_for('static', filename='js/base.js') }}"></script>
+  {% endblock %}
 </html>
